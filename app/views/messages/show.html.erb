@@ -1,0 +1,15 @@
+<h1>Message</h1>
+
+<p>
+  <b>Body:</b>
+  <%= @message.body %>
+</p>
+
+<p>
+	<strong>Created at:</strong>
+	<%= @message.created_at.to_s(:my_datetime) %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

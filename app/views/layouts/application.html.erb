@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Messager</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+
+</head>
+<body>
+
+<h1><%= link_to "Messager", root_path %></h1>
+
+<%= yield :top_table %>
+
+<p id="notice"><%= notice %></p>
+
+<% if flash[:error] %>
+	<p id="error"><%= flash[:error] %></p>
+<% end %>
+
+<table border="1" cellspacing="5" cellpadding="5" width="100%">
+	<tr>
+		<td width="20%">
+			<ul>
+				<li><%= link_to "Current status", current_status_path %></li>
+				<li><%= link_to "History", messages_path %></li>
+			</ul>
+		</td>
+		<td><%= yield %></td>
+	</tr>
+</table>
+
+</body>
+</html>

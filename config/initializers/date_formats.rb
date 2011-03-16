@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:my_datetime] = "%d.%m.%Y %H:%M"
