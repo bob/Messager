@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Emotion:</b>
+  <%= image_tag(Message::IMG_DIR + @message.emotion) %>
+</p>
+
+<p>
 	<strong>Created at:</strong>
 	<%= @message.created_at.to_s(:my_datetime) %>
 </p>
@@ -13,3 +18,4 @@
 
 <%= link_to 'Edit', edit_message_path(@message) %> |
 <%= link_to 'Back', messages_path %>
+

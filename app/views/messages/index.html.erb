@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Body</th>
-    <th></th>
+    <th>Emotion</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,6 +11,7 @@
 <% @messages.each do |message| %>
   <tr>
     <td><%= message.body %></td>
+    <td><%= image_tag (Message::IMG_DIR + message.emotion) %></td>
     <td><%= link_to 'Show', message %></td>
     <td><%= link_to 'Edit', edit_message_path(message) %></td>
     <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -21,3 +22,4 @@
 <br />
 
 <%= link_to 'New Message', new_message_path %>
+

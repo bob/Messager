@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.xml
   def index
-    @messages = Message.all
+    @messages = Message.order("created_at DESC").all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
       format.xml  { render :xml => @message }
     end
   end
-  
+
   def current
     @message = Message.order(:created_at).last
     redirect_to message_path(@message)
@@ -86,3 +86,4 @@ class MessagesController < ApplicationController
     end
   end
 end
+

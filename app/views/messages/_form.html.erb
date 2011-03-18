@@ -6,7 +6,15 @@
     <%= f.label :body %><br />
     <%= f.text_field :body %>
   </div>
+
+  <div class="field">
+    <%= f.label :emotion %><br />
+    <%= f.select :emotion, Message::EMOTIONS,
+                  :prompt => 'Select your emotion'%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
