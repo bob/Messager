@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110318092150) do
+ActiveRecord::Schema.define(:version => 20110318212431) do
 
   create_table "messages", :force => true do |t|
     t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "emotion",    :default => "neutral.gif"
+    t.integer  "color",      :default => 16777215
   end
 
 end
