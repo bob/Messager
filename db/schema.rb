@@ -17,7 +17,8 @@ ActiveRecord::Schema.define(:version => 20110318212431) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "emotion",    :default => "neutral.gif"
-    t.integer  "color",      :default => 16777215
+    t.string   "color",      :default => "ffffff"
   end
 
 end
+

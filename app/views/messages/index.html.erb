@@ -10,7 +10,12 @@
 
 <% @messages.each do |message| %>
   <tr>
-    <td><%= message.body %></td>
+
+
+
+
+     <td BGCOLOR="#<%=message.color%>"><%= message.body %></td>
+   <!-- <td style="border-style:solid; border-color:#ff0000"><%= message.body %></td> !-->
     <td><%= image_tag (Message::IMG_DIR + message.emotion) %></td>
     <td><%= link_to 'Show', message %></td>
     <td><%= link_to 'Edit', edit_message_path(message) %></td>
