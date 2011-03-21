@@ -9,23 +9,42 @@
 </head>
 <body>
 
-<h1><%= link_to "Messager", root_path %></h1>
+<table border="0" cellspacing="5" cellpadding="0" width="100%">
+	<tr>
+		<td><h1><%= link_to "Messager", root_path %></h1></td>
+		<td align="right" width="20%">
+			<% if current_user %>
+				Вы вошли как <%= current_user.email %>. <%= link_to "Logout", destroy_user_session_path %>
+			<% else %>
+				<%= link_to "Login", new_user_session_path %> | <%= link_to "Registration", new_user_registration_path %>
+			<% end %>
+		</td>
+	</tr>
+</table>
+
 
 <%= yield :top_table %>
 
 <p id="notice"><%= notice %></p>
 
-<% if flash[:error] %>
-	<p id="error"><%= flash[:error] %></p>
+<% if alert %>
+	<p id="error"><%= alert %></p>
 <% end %>
+
 
 <table border="1" cellspacing="5" cellpadding="5" width="100%">
 	<tr>
 		<td width="20%">
-			<ul>
+
+		<ul>			
+			<li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<% if current_user %>			
 				<li><%= link_to "Current status", current_status_path %></li>
 				<li><%= link_to "History", messages_path %></li>
-			</ul>
+			<% end %>
+		</ul>
+
 		</td>
 		<td><%= yield %></td>
 	</tr>

@@ -2,6 +2,7 @@ class Message < ActiveRecord::Base
 
   IMG_DIR = "/images/Smiles/"
   EMOTIONS = [
+    ["-", ""],
     ["happy", "happy.gif"],
     ["boring", "boring.gif"],
     ["neutral", "neutral.gif"]
@@ -9,6 +10,7 @@ class Message < ActiveRecord::Base
 
   COLORS =
   [
+  ["-", "fff"],
   ["Red", "cc0000" ],
   ["Yellow", "dddd00" ],
   ["Green", "00cc00" ]
@@ -18,6 +20,6 @@ class Message < ActiveRecord::Base
   validates :emotion, :inclusion => EMOTIONS.map {|disp, value| value}
   validates :color, :inclusion => COLORS.map {|disp, value| value}
 
-
+  belongs_to :user
 end
 

@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /messages
   # GET /messages.xml
   def index
@@ -46,6 +48,7 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
+    @message.user = current_user
 
     respond_to do |format|
       if @message.save

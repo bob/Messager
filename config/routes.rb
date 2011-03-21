@@ -1,4 +1,10 @@
 Messager::Application.routes.draw do
+  get "welcome/index"
+
+  get "welcome/about", :as => "about"
+
+  devise_for :users
+
   resources :messages
   
   match "status/current" => "messages#current", :as => "current_status"
@@ -58,7 +64,7 @@ Messager::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "messages#index"
+  root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 
