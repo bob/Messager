@@ -1,4 +1,8 @@
 Messager::Application.routes.draw do
+  get "profile/profile", :as => "profile"
+
+  match 'profile/:id/edit', :as => 'profile#edit'
+
   get "welcome/index"
 
   get "welcome/about", :as => "about"
@@ -6,14 +10,14 @@ Messager::Application.routes.draw do
   devise_for :users
 
   resources :messages
-  
+
   match "status/current" => "messages#current", :as => "current_status"
-  
+
   # controller :messages do
   #   get 'status/current' => :current, :as => "current_status"
   # end
-  
-  
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -72,3 +76,4 @@ Messager::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+

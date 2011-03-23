@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
-  
+
   # GET /messages
   # GET /messages.xml
   def index
-    @messages = Message.order("created_at DESC").all
+    @messages = current_user.messages
 
     respond_to do |format|
       format.html # index.html.erb

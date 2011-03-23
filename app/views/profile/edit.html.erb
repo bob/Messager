@@ -1,0 +1,15 @@
+<h1>Fullname changing</h1>
+
+<%= form_for(@user) do |f| %>
+
+<%= f.error_messages %>
+
+<p><%= f.label :fullname %><br/>
+		<%= f.text_field :fullname %></p>
+
+<% end %>
+
+<div class="actions">
+    <%= f.submit %>
+  </div>
+

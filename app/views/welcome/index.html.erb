@@ -16,8 +16,10 @@
     <td><%= image_tag(Message::IMG_DIR + message.emotion) unless message.emotion.blank? %></td>
 	<td><%= message.created_at.to_s(:my_datetime) %></td>
     <td><%= link_to 'Show', message %></td>
+  <% if current_user && (current_user.id == message.user_id) %>
     <td><%= link_to 'Edit', edit_message_path(message) %></td>
     <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  <% end %>
   </tr>
 <% end %>
 </table>
