@@ -5,7 +5,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :avatar
   
   has_many :messages
+  
+  has_attached_file :avatar, 
+    # :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
+    # :url => '...',
+    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+    :default_url => "rails.png"
+    
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif']
+  validates_attachment_size :avatar, :less_than => 500.kilobytes
+  
 end

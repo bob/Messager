@@ -1,10 +1,17 @@
 Messager::Application.routes.draw do
-  get "profile/profile", :as => "profile"
+  
+  match "profile" => "profile#profile", :as => "profile"
+  match 'profile/edit' => 'profile#edit', :as => "profile_edit"
+  match 'profile/change_fullname' => 'profile#change_fullname', :as => "profile_change_fullname"
 
-  match 'profile/:id/edit', :as => 'profile#edit'
+  controller :profile do
+    get "profile/change_password" => :change_password, :as => "change_password"
+    put "profile/update_password" => :update_password, :as => "update_password"
+    get "profile/avatar" => :avatar, :as => "avatar"
+    put "profile/update_avatar" => :update_avatar, :as => "update_avatar"
+  end
 
   get "welcome/index"
-
   get "welcome/about", :as => "about"
 
   devise_for :users
