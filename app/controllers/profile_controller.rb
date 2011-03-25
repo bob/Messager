@@ -1,18 +1,14 @@
 class ProfileController < ApplicationController
   before_filter :authenticate_user!
-  
-  def profile
-    
-  end
 
-  def change_fullname
+  def profile
 
   end
 
   def change_password
     @user = current_user
   end
-  
+
   def update_password
     @user = current_user
     if @user.update_with_password(params[:user])
@@ -24,13 +20,13 @@ class ProfileController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
-  
+
   def avatar
-    
+
   end
-  
+
   def update_avatar
     @user = current_user
     if @user.update_attributes(params[:user])
@@ -43,16 +39,13 @@ class ProfileController < ApplicationController
 
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
 
-    respond_to do |format|
-      if @edit.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User fullname was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Profile changed"
+      redirect_to profile_path
+    else
+      render :profile_edit
     end
   end
 

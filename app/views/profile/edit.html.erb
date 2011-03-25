@@ -1,15 +1,21 @@
-<h1>Fullname changing</h1>
+<h1>Edit profile</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_for :user, :url => profile_edit_path, :html => { :multipart => true, :method => :put } do |f| %>
+	<%= f.error_messages %>
 
-<%= f.error_messages %>
+	<p>
+		<%= f.label :avatar %><br/>
+		<%= f.file_field :avatar %>
+	</p>
 
-<p><%= f.label :fullname %><br/>
-		<%= f.text_field :fullname %></p>
+  <p>
+    <%= f.label :fullname %><br/>
+		<%= f.text_field :fullname %>
+  </p>
+
+  <div class="actions">
+    <%= f.submit "Apply changes"%>
+  </div>
 
 <% end %>
-
-<div class="actions">
-    <%= f.submit %>
-  </div>
 

@@ -1,8 +1,8 @@
 Messager::Application.routes.draw do
-  
+
   match "profile" => "profile#profile", :as => "profile"
   match 'profile/edit' => 'profile#edit', :as => "profile_edit"
-  match 'profile/change_fullname' => 'profile#change_fullname', :as => "profile_change_fullname"
+  #match 'profile/change_fullname' => 'profile#change_fullname', :as => "profile_change_fullname"
 
   controller :profile do
     get "profile/change_password" => :change_password, :as => "change_password"
