@@ -27,6 +27,11 @@
 
 <p id="notice"><%= notice %></p>
 
+<!--<p><%= params[:controller] %></p>
+<p><%= params[:action] %></p>
+<p><%= request.request_uri %></p>
+<p><%= about_path %></p>!-->
+
 <% if alert %>
 	<p id="error"><%= alert %></p>
 <% end %>
@@ -37,12 +42,12 @@
 		<td width="20%">
 
 		<ul>
-			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "About", about_path %></li>
+			<li><%= link_to "Home", root_path, :class => is_current_forhighlighting(root_path) %></li>
+			<li><%= link_to "About", about_path, :class => is_current_forhighlighting(about_path) %></li>
 			<% if current_user %>
-        <li><%= link_to "Profile", profile_path %></li>
-				<li><%= link_to "Current status", current_status_path %></li>
-				<li><%= link_to "History", messages_path %></li>
+        <li><%= link_to "Profile", profile_path, :class => is_current_forhighlighting(profile_path) %></li>
+				<li><%= link_to "Current status", current_status_path, :class => is_current_forhighlighting(current_status_path) %></li>
+				<li><%= link_to "History", messages_path, :class => is_current_forhighlighting(messages_path) %></li>
 			<% end %>
 		</ul>
 

@@ -11,7 +11,7 @@ class Message < ActiveRecord::Base
   COLORS =
   [
   ["-", "fff"],
-  ["Red", "cc0000" ],
+  ["Red", "D80000 " ],
   ["Yellow", "dddd00" ],
   ["Green", "00cc00" ]
   ]

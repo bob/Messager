@@ -6,6 +6,7 @@ Messager::Application.routes.draw do
 
   controller :profile do
     get "profile/change_password" => :change_password, :as => "change_password"
+    put "profile/update" => :update, :as => "update_profile"
     put "profile/update_password" => :update_password, :as => "update_password"
     get "profile/avatar" => :avatar, :as => "avatar"
     put "profile/update_avatar" => :update_avatar, :as => "update_avatar"
