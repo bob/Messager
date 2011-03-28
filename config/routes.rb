@@ -1,5 +1,11 @@
 Messager::Application.routes.draw do
 
+  controller :users do
+    get "users/:user_id" => :show, :as => "show_user"
+    post "users/:user_id/follow" => :follow, :as => "follow_user"
+    post "users/:user_id/unfollow" => :unfollow, :as => "unfollow_user"
+  end
+
   match "profile" => "profile#profile", :as => "profile"
   match 'profile/edit' => 'profile#edit', :as => "profile_edit"
   #match 'profile/change_fullname' => 'profile#change_fullname', :as => "profile_change_fullname"

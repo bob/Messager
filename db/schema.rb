@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110323151110) do
+ActiveRecord::Schema.define(:version => 20110328135209) do
 
   create_table "messages", :force => true do |t|
     t.string   "body"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(:version => 20110323151110) do
     t.string   "emotion",    :default => "neutral.gif"
     t.string   "color",      :default => "ffffff"
     t.integer  "user_id",                               :null => false
+  end
+
+  create_table "relations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "translator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

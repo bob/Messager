@@ -1,0 +1,9 @@
+<h1>User</h1>
+
+<p>Email: <%= @user.email %></p>
+<p>Full name: <%= @user.fullname %></p>
+
+<p><%= image_tag @user.avatar.url(:medium) %></p>
+
+
+<%= current_user.translators.include?(@user) ? link_to("Unfollow", unfollow_user_path(@user), :method => :post) : link_to("Follow", follow_user_path(@user), :method => :post) %>

@@ -17,5 +17,15 @@ class User < ActiveRecord::Base
     
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif']
   validates_attachment_size :avatar, :less_than => 500.kilobytes
+
+  has_many :relations
+  # Subscribers - reading me
+  # has_many :subscribers, :class_name => "User"
+  
+  # Translators - I'm reading  
+  has_many :translators, :through => :relations, :source => :translator
+  
+  # Relations
+  
   
 end
