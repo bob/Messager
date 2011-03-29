@@ -1,12 +1,8 @@
 <h1>Profile</h1>
 
-<p>Email: <%= current_user.email %></p>
-<p>Full name: <%= current_user.fullname %></p>
-
-<p><%= image_tag current_user.avatar.url(:medium) %></p>
-
 <ul>
-			<li><%= link_to "Edit profile", profile_edit_path %></li>
-			<li><%= link_to "Change password", change_password_path %></li>
-<ul>
+	<li><%= link_to "Edit profile", profile_edit_path %></li>
+	<li><%= link_to "Change password", change_password_path %></li>
+</ul>
 
+<%= render 'users/user' %>

@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Body</th>
+    <th>Emotion</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td style="border-style:solid; border-color:#<%= message.color %>"><%= message.body %></td>
+    <td><%= image_tag(Message::IMG_DIR + message.emotion) unless message.emotion.blank? %></td>
+    <td><%= link_to 'Show', message %></td>
+  </tr>
+<% end %>
+
+</table>
+
+<br />

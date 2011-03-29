@@ -32,3 +32,4 @@ gem 'mysql2'
 
 gem 'devise'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git" 
+gem "simple-navigation"	

@@ -25,7 +25,8 @@ class MessagesController < ApplicationController
 
   def current
     @message = Message.order(:created_at).last
-    redirect_to message_path(@message)
+    #redirect_to message_path(@message)
+    render :show
   end
 
   # GET /messages/new
@@ -89,4 +90,3 @@ class MessagesController < ApplicationController
     end
   end
 end
-

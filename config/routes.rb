@@ -1,9 +1,10 @@
 Messager::Application.routes.draw do
 
   controller :users do
-    get "users/:user_id" => :show, :as => "show_user"
-    post "users/:user_id/follow" => :follow, :as => "follow_user"
-    post "users/:user_id/unfollow" => :unfollow, :as => "unfollow_user"
+    get  "user/show_friends" => :show_friends, :as => "show_friends"
+    get "user/:user_id" => :show, :as => "show_user"
+    post "user/:user_id/follow" => :follow, :as => "follow_user"
+    post "user/:user_id/unfollow" => :unfollow, :as => "unfollow_user"
   end
 
   match "profile" => "profile#profile", :as => "profile"
