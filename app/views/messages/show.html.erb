@@ -15,7 +15,29 @@
 	<%= @message.created_at.to_s(:my_datetime) %>
 </p>
 
-
 <%= link_to 'Edit', edit_message_path(@message) %> |
 <%= link_to 'Back', messages_path %>
 
+<%= link_to "Add comment", new_message_comment_path(@message) %>
+
+<h2>Comments</h2>
+
+<table>
+	<% @message.comments.each do |comment| %>
+	<tr>
+		<td>
+			<%= link_to image_tag(comment.user.avatar.url(:thumb)), show_user_path(comment.user) %><br/>
+			<%= user_human(comment.user) %>			
+		</td>
+		<td>
+			<%= comment.created_at.to_s(:my_datetime) %><br/>
+			<%= comment.body %>
+		</td>
+		<td>
+			<% if comment.destroyable?(current_user) %>
+				<%= link_to 'Destroy', message_comment_path(@message, comment), :confirm => 'Are you sure?', :method => :delete %>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>

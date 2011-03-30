@@ -1,10 +1,9 @@
 <h1>Friends</h1>
 
 <% @translators.each do |translator| %>
-  <%= link_to translator.fullname, show_user_path(translator.id) %>
+	<%= link_to translator.fullname, show_user_path(translator.id) %>
 
-<% @messages = translator.messages %>
+	<% @messages = translator.messages %>
 
-<%= render 'users/show_messages' %>
-
+	<%= render 'users/show_messages' %>
 <% end %>

@@ -10,4 +10,13 @@ module ApplicationHelper
     end
   end
 
+  def user_links_list(users)
+    links = []
+    users.each do |user|
+    	links << link_to(user.fullname, show_user_path(user.id))
+    end
+
+    links.join(", ").html_safe    
+  end
+
 end

@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   before_filter :prepare, :except => [:show_friends]
   
   def show
-   @translators = @user.translators
    if current_user.id == @user.id
       redirect_to profile_path
+   else
+      @translators = @user.translators
    end
   end
   

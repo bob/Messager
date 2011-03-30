@@ -3,7 +3,4 @@
 
 <p><%= image_tag @user.avatar.url(:medium) %></p>
 
-Translators:
-<% @translators.each do |translator| %>
-| <%= link_to translator.fullname, show_user_path(translator.id) %> |
-<% end %>
+Translators: <%= user_links_list(@translators) %>

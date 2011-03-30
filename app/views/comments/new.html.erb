@@ -1,0 +1,17 @@
+<h1>New comment</h1>
+
+<%#= form_for([@message, @comment]) do |f| %>
+<%= form_for(:comment, :url => message_comments_path(@message), :method => :post) do |f| %>
+
+	<%= f.error_messages %>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_field :body, :size => 60 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

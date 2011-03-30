@@ -21,5 +21,7 @@ class Message < ActiveRecord::Base
   validates :color, :inclusion => COLORS.map {|disp, value| value}
 
   belongs_to :user
+  
+  has_many :comments
 end
 

@@ -1,5 +1,6 @@
 Messager::Application.routes.draw do
 
+
   controller :users do
     get  "user/show_friends" => :show_friends, :as => "show_friends"
     get "user/:user_id" => :show, :as => "show_user"
@@ -24,7 +25,9 @@ Messager::Application.routes.draw do
 
   devise_for :users
 
-  resources :messages
+  resources :messages do
+    resources :comments, :only => [:new, :create, :destroy]    
+  end
 
   match "status/current" => "messages#current", :as => "current_status"
 
