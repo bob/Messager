@@ -3,13 +3,13 @@
 
  navigation.items do |primary|
   
-    primary.item :home, "home", root_path#, :highlights_on	
+    primary.item :home, "Home", root_path#, :highlights_on	
     primary.item :about, "About", about_path#, :highlights_on
     
     if current_user
-      primary.item :profile, "profile", profile_path#, :highlights_on
-      primary.item :current_status, "current_status", current_status_path#, :highlights_on
-      primary.item :history, "history", messages_path#, :highlights_on
+      primary.item :profile, "Profile", profile_path#, :highlights_on
+      primary.item :current_status, "Current status", current_status_path#, :highlights_on
+      primary.item :history, "History", messages_path#, :highlights_on
       primary.item :friends, "Friends", show_friends_path#, :highlights_on
     end
 

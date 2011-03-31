@@ -43,6 +43,7 @@ class MessagesController < ApplicationController
   # GET /messages/1/edit
   def edit
     @message = Message.find(params[:id])
+
   end
 
   # POST /messages
@@ -66,23 +67,27 @@ class MessagesController < ApplicationController
   # PUT /messages/1.xml
   def update
     @message = Message.find(params[:id])
-
-    respond_to do |format|
-      if @message.update_attributes(params[:message])
-        format.html { redirect_to(@message, :notice => 'Message was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
-      end
+  
+    if @message.destroyable?(current_user)
+      flash[:notice] = "Message updated"
+      @message.update_attributes(params[:message])
+    else
+      flash[:alert] = "Not allowed to update this message"
     end
+
+    redirect_to(@message)
   end
 
   # DELETE /messages/1
   # DELETE /messages/1.xml
   def destroy
     @message = Message.find(params[:id])
-    @message.destroy
+    if @message.destroyable?(current_user)
+      flash[:notice] = "Message deleted"
+      @message.destroy 
+    else
+      flash[:alert] = "Not allowed to delete this message"
+    end
 
     respond_to do |format|
       format.html { redirect_to(messages_url) }

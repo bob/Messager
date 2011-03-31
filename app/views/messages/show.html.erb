@@ -15,9 +15,11 @@
 	<%= @message.created_at.to_s(:my_datetime) %>
 </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<% if @message.destroyable?(current_user) %>
+  <%= link_to 'Edit', edit_message_path(@message) %> 
+<% end %>
 
+<%= link_to 'Back', messages_path %>
 <%= link_to "Add comment", new_message_comment_path(@message) %>
 
 <h2>Comments</h2>

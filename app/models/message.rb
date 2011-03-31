@@ -23,5 +23,10 @@ class Message < ActiveRecord::Base
   belongs_to :user
   
   has_many :comments
+
+  def destroyable?(current_user)
+    self.user == current_user
+  end
+
 end
 

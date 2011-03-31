@@ -34,6 +34,12 @@ class UsersController < ApplicationController
 
  def show_friends
     @translators = current_user.translators
+
+    @messages = []
+    @translators.each do |translator|
+    	@messages << translator.messages
+    end
+    @messages.flatten!
  end
 
   private
