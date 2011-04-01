@@ -24,7 +24,7 @@ class Message < ActiveRecord::Base
   
   has_many :comments
 
-  def destroyable?(current_user)
+  def modificapable?(current_user)
     self.user == current_user
   end
 

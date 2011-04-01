@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
   end
 
   def current
-    @message = Message.order(:created_at).last
+    @message = current_user.messages.order(:created_at).last
     #redirect_to message_path(@message)
     render :show
   end
@@ -68,7 +68,7 @@ class MessagesController < ApplicationController
   def update
     @message = Message.find(params[:id])
   
-    if @message.destroyable?(current_user)
+    if @message.modificapable?(current_user)
       flash[:notice] = "Message updated"
       @message.update_attributes(params[:message])
     else
@@ -82,7 +82,7 @@ class MessagesController < ApplicationController
   # DELETE /messages/1.xml
   def destroy
     @message = Message.find(params[:id])
-    if @message.destroyable?(current_user)
+    if @message.modificapable?(current_user)
       flash[:notice] = "Message deleted"
       @message.destroy 
     else
