@@ -1,4 +1,9 @@
 class Message < ActiveRecord::Base
+  belongs_to :user  
+  has_many :comments, :as => :commentable
+
+  cattr_reader :per_page
+  @@per_page = 5
 
   IMG_DIR = "/images/Smiles/"
   EMOTIONS = [
@@ -19,10 +24,6 @@ class Message < ActiveRecord::Base
   validates_presence_of :body
   validates :emotion, :inclusion => EMOTIONS.map {|disp, value| value}
   validates :color, :inclusion => COLORS.map {|disp, value| value}
-
-  belongs_to :user
-  
-  has_many :comments
 
   def modificapable?(current_user)
     self.user == current_user

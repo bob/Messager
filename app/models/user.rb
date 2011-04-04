@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   # Subscribers - reading me
   # has_many :subscribers, :class_name => "User"
   
+  has_many :comments, :as => :commentable
+  
   # Translators - I'm reading  
   has_many :translators, :through => :relations, :source => :translator
   

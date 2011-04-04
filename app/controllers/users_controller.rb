@@ -35,11 +35,14 @@ class UsersController < ApplicationController
  def show_friends
     @translators = current_user.translators
 
-    @messages = []
-    @translators.each do |translator|
-    	@messages << translator.messages
-    end
-    @messages.flatten!
+    # @messages = []
+    # @translators.each do |translator|
+    #   @messages << translator.messages
+    # end    
+    # @messages.flatten!
+    # @messages.sort! {|a,b| b.created_at <=> a.created_at}
+    
+    @messages = Message.paginate(:page => params[:page], :conditions => ["user_id IN (#{@translators.map(&:id).join(",")})"], :order => "created_at DESC")
  end
 
   private

@@ -1,0 +1,15 @@
+<tr>
+	<td>
+		<%= link_to image_tag(comment.user.avatar.url(:thumb)), show_user_path(comment.user) %><br/>
+		<%= user_human(comment.user) %>			
+	</td>
+	<td>
+		<%= comment.created_at.to_s(:my_datetime) %><br/>
+		<%= comment.body %>
+	</td>
+	<td>
+		<% if comment.destroyable?(current_user) %>
+			<%= link_to 'Destroy', comment_path(comment), :confirm => 'Are you sure?', :method => :delete %>
+		<% end %>
+	</td>
+</tr>
