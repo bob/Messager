@@ -1,1 +1,3 @@
-.current, .selected { background-color: #00cc00; }
+.current, .selected { color: red; font-weight:bold; }
+
+.fo {background-color : #F8F8F8;  }
