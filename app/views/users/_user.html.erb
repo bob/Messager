@@ -3,4 +3,16 @@
 
 <p><%= image_tag @user.avatar.url(:medium) %></p>
 
-Translators: <%= user_links_list(@translators) %>
+<p>Translators: <%= user_links_list(@translators) %></p>
+
+<p>
+	<%= link_to "Add comment", new_comment_path(:commentable_type => "user", :commentable_id => @user.id) %>
+
+	<h2>Comments</h2>
+
+	<table>
+		<% @user.comments.each do |comment| %>
+			<%= render :partial => "comments/comment_item", :locals => {:comment => comment} %>
+		<% end %>
+	</table>	
+</p>

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :prepare
+  before_filter :prepare, :except => [:destroy]
   
   def new    
     @comment = Comment.new
@@ -14,12 +14,13 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-    @comment.message = @message
+    @comment.commentable = @commentable
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to(@message, :notice => 'Message was successfully created.') }
-        format.xml  { render :xml => @message, :status => :created, :location => @message }
+        Notifier.new_comment(@comment).deliver
+        format.html { redirect_to(@commentable, :notice => 'Comment was successfully created.') }
+        format.xml  { render :xml => @commentable, :status => :created, :location => @commentable }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
@@ -38,14 +39,15 @@ class CommentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(@message) }
+      format.html { redirect_to(@comment.commentable) }
       format.xml  { head :ok }
     end
   end
 
   private
   def prepare
-    @message = Message.find(params[:message_id])
+    @klass = params[:commentable_type].capitalize.constantize
+    @commentable = @klass.find(params[:commentable_id])
   end
 
 end
