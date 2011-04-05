@@ -8,6 +8,7 @@ class UsersController < ApplicationController
    else
       @translators = @user.translators
       @subscribers = @user.subscribers
+      @comments = Comment.paginate(:page => params[:page], :conditions => {:commentable_id => @user.id, :commentable_type => 'User' })
    end
   end
 
