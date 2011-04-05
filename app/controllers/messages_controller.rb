@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :prepare, :only => [:show, :current]
 
   # GET /messages
   # GET /messages.xml
@@ -25,7 +26,6 @@ class MessagesController < ApplicationController
 
   def current
     @message = current_user.messages.order(:created_at).last
-    #redirect_to message_path(@message)
     render :show
   end
 
@@ -67,7 +67,7 @@ class MessagesController < ApplicationController
   # PUT /messages/1.xml
   def update
     @message = Message.find(params[:id])
-  
+
     if @message.modificapable?(current_user)
       flash[:notice] = "Message updated"
       @message.update_attributes(params[:message])
@@ -84,7 +84,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     if @message.modificapable?(current_user)
       flash[:notice] = "Message deleted"
-      @message.destroy 
+      @message.destroy
     else
       flash[:alert] = "Not allowed to delete this message"
     end
@@ -94,4 +94,10 @@ class MessagesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+    def prepare
+      @comments = Comment.paginate(:page => params[:page], :conditions => {:commentable_id => params[:id], :commentable_type => 'Message' })
+    end
 end
+

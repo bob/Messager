@@ -16,7 +16,7 @@
 </p>
 
 <% if @message.modificapable?(current_user) %>
-  <%= link_to 'Edit', edit_message_path(@message) %> 
+  <%= link_to 'Edit', edit_message_path(@message) %>
 <% end %>
 
 | <%= link_to 'Back', messages_path %>
@@ -25,7 +25,10 @@
 <h2>Comments</h2>
 
 <table>
-	<% @message.comments.each do |comment| %>
+	<% @comments.each do |comment| %>
 		<%= render :partial => "comments/comment_item", :locals => {:comment => comment} %>
 	<% end %>
 </table>
+
+<%= will_paginate @comments %>
+

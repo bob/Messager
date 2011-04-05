@@ -2,8 +2,9 @@ class ProfileController < ApplicationController
   before_filter :authenticate_user!
 
   def profile
-	@user = current_user
-	@translators = current_user.translators
+	  @user = current_user
+	  @translators = current_user.translators
+    @subscribers = current_user.subscribers
   end
 
   def change_password

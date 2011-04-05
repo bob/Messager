@@ -14,10 +14,24 @@ class Notifier < ActionMailer::Base
       user_email = comment.commentable.user.email
       @followlink = message_url(comment.commentable)
     end
-    
+
     @username = comment.user.email
 
     mail :to => user_email, :subject => "New comment"
   end
-  
+
+  def following(relation)
+    @username = relation.user.email
+    @followlink = show_user_url(relation.user)
+    user_email = relation.translator.email
+    mail :to => user_email, :subject => "Following"
+  end
+
+  def unfollowing(relation)
+    @username = relation.user.email
+    @followlink = show_user_url(relation.user)
+    user_email = relation.translator.email
+    mail :to => user_email, :subject => "Ufollowing"
+  end
 end
+
