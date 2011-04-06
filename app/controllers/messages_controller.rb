@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
   # GET /messages/1.xml
   def show
     @message = Message.find(params[:id])
+    @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => params[:id], :commentable_type => "Message" }, :order => "created_at DESC") 
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class MessagesController < ApplicationController
 
   def current
     @message = current_user.messages.order(:created_at).last
+    @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => @message.id, :commentable_type => "Message" }, :order => "created_at DESC")
     #redirect_to message_path(@message)
     render :show
   end

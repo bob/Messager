@@ -3,6 +3,9 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, :polymorphic => true
   
+  cattr_reader :per_page
+  @@per_page = 4
+
   validates_presence_of :body
   
   def destroyable?(current_user)

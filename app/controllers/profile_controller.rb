@@ -2,8 +2,9 @@ class ProfileController < ApplicationController
   before_filter :authenticate_user!
 
   def profile
-	@user = current_user
-	@translators = current_user.translators
+	 @user = current_user
+	 @translators = current_user.translators
+   @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => current_user.id, :commentable_type => "User" }, :order => "created_at DESC")
   end
 
   def change_password

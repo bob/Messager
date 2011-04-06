@@ -11,8 +11,9 @@
 	<h2>Comments</h2>
 
 	<table>
-		<% @user.comments.each do |comment| %>
+		<% @comments.each do |comment| %>
 			<%= render :partial => "comments/comment_item", :locals => {:comment => comment} %>
 		<% end %>
-	</table>	
+	</table>
+  <%= will_paginate @comments %>
 </p>

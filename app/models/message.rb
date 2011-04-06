@@ -3,7 +3,7 @@ class Message < ActiveRecord::Base
   has_many :comments, :as => :commentable
 
   cattr_reader :per_page
-  @@per_page = 5
+  @@per_page = 4
 
   IMG_DIR = "/images/Smiles/"
   EMOTIONS = [

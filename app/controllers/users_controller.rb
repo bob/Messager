@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       redirect_to profile_path
    else
       @translators = @user.translators
+      @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => params[:user_id], :commentable_type => "User" }, :order => "created_at DESC")
    end
   end
   
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
     relation = Relation.new(:user_id => current_user.id, :translator_id => @user.id)
     
     if relation.save
+      Notifier.new_follow(relation).deliver
       flash[:notice] = "You followed user"
     else
       flash[:error] = "Error. You are not followed this user"
@@ -25,8 +27,8 @@ class UsersController < ApplicationController
   
   def unfollow
     relation = current_user.relations.where(:translator_id => @user.id).first
+    Notifier.new_unfollow(relation).deliver
     relation.destroy
-    
     flash[:notice] = "You unfollow user"
     
     redirect_to show_user_path(@user)
