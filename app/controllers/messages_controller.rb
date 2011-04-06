@@ -68,6 +68,7 @@ class MessagesController < ApplicationController
   # PUT /messages/1
   # PUT /messages/1.xml
   def update
+    params[:message][:category_ids] ||= []
     @message = Message.find(params[:id])
   
     if @message.modificapable?(current_user)

@@ -4,6 +4,7 @@ class ProfileController < ApplicationController
   def profile
 	 @user = current_user
 	 @translators = current_user.translators
+	 @subscribers = current_user.subscribers
    @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => current_user.id, :commentable_type => "User" }, :order => "created_at DESC")
   end
 

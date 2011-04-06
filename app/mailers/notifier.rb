@@ -20,19 +20,19 @@ class Notifier < ActionMailer::Base
     mail :to => user_email, :subject => "New comment"
   end
   
-    def new_follow(relation)
-     @followlink = show_user_url(relation.user)
-     @username = relation.user.email
-     user_email = relation.translator.email
+  def new_follow(relation)
+   @followlink = show_user_url(relation.user)
+   @username = relation.user.email
+   user_email = relation.translator.email
 
-     mail :to => user_email, :subject => "New follow"
-    end
+   mail :to => user_email, :subject => "New follow"
+  end
 
-    def new_unfollow(relation)
-     @followlink = show_user_url(relation.user)
-     @username = relation.user.email
-     user_email = relation.translator.email
+  def new_unfollow(relation)
+   @followlink = show_user_url(relation.user)
+   @username = relation.user.email
+   user_email = relation.translator.email
 
-     mail :to => user_email, :subject => "New unfollow"
-    end
+   mail :to => user_email, :subject => "New unfollow"
+  end
 end

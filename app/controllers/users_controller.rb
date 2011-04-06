@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       redirect_to profile_path
    else
       @translators = @user.translators
+      @subscribers = @user.subscribers
       @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => params[:user_id], :commentable_type => "User" }, :order => "created_at DESC")
    end
   end

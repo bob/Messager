@@ -20,6 +20,14 @@
                 :prompt => "Choose color" %>
   </div>
 
+<p>
+	Categories:<br/>
+	<% for category in Category.all do %>
+		<%= check_box_tag "message[category_ids][]", category.id, @message.categories.include?(category) %> <%= category.name %><br/>
+	<% end %>
+	
+</p>
+
   <div class="actions">
     <%= f.submit %>
   </div>

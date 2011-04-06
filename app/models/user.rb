@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :relations
   # Subscribers - reading me
   # has_many :subscribers, :class_name => "User"
+  has_many :subscribers, :through => :relations, :source => :subscriber
   
   has_many :comments, :as => :commentable
   

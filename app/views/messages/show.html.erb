@@ -15,6 +15,15 @@
 	<%= @message.created_at.to_s(:my_datetime) %>
 </p>
 
+<p>
+	<strong>Categories:</strong><br/>
+	<ul>
+		<% @message.categories.each do |category| %>
+		<li><%= category.name %></li>
+		<% end %>
+	</ul>
+</p>
+
 <% if @message.modificapable?(current_user) %>
   <%= link_to 'Edit', edit_message_path(@message) %> 
 <% end %>

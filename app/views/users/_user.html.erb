@@ -4,6 +4,7 @@
 <p><%= image_tag @user.avatar.url(:medium) %></p>
 
 <p>Translators: <%= user_links_list(@translators) %></p>
+<p>Subscribers: <%= user_links_list(@subscribers) %></p>
 
 <p>
 	<%= link_to "Add comment", new_comment_path(:commentable_type => "user", :commentable_id => @user.id) %>
