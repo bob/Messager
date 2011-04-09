@@ -3,3 +3,12 @@
 .fo {background-color : #F8F8F8;  }
 
 .marg {margin: 0px;}
+
+#messages_list_detail td#category {
+    width: 100px;
+}
+
+#messages_list_detail td#message_body {
+    width: 300px;
+}
+

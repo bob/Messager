@@ -16,7 +16,17 @@ module ApplicationHelper
     	links << link_to(user.fullname, show_user_path(user.id))
     end
 
-    links.join(", ").html_safe    
+    links.join(", ").html_safe
+  end
+
+  def categories_joined_to_line(categories)
+    categories_joined = []
+    categories.each do |category|
+    	categories_joined << category.name
+    end
+
+    categories_joined.join(", ")
   end
 
 end
+

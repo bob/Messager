@@ -1,28 +1,35 @@
-<table border="0">
+<table id = "messages_list_detail" border="0">
   <tr>
     <th>User</th>
     <th>Body</th>
     <th>Emotion</th>
-    <th></th>
-    <th></th>
+    <th>Categories</th>
+    <th>Date</th>
   </tr>
 
 <% @messages.each do |message| %>
   <tr>
-	<td>
+	  <td>
 	    <%= link_to image_tag(message.user.avatar.url(:thumb)), show_user_path(message.user) %><br/>
 	    <%= user_human(message.user) %>
-	</td>
-	<td style="border-style:solid; border-color:#<%= message.color %>"><%= message.body %></td>
-        <td><%= image_tag(Message::IMG_DIR + message.emotion) unless message.emotion.blank? %></td>
-	<td><%= message.created_at.to_s(:my_datetime) %></td>
-        <td><%= link_to 'Show', message %>
-
-	  <% if message.modificapable?(current_user) %>
-	     | <%= link_to 'Edit', edit_message_path(message) %> |
-	    <%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %>
-	  <% end %>
-	</td>
+	  </td>
+	  <td style="border-style:solid; border-color:#<%= message.color %>" id = "message_body">
+      <%= message.body %>
+    </td>
+    <td>
+      <%= image_tag(Message::IMG_DIR + message.emotion) unless message.emotion.blank? %>
+    </td>
+    <td id = "category">
+      <%= categories_joined_to_line(message.categories)%>
+    </td>
+    <td><%= message.created_at.to_s(:my_datetime) %></td>
+    <td><%= link_to 'Show', message %>
+      <% if message.modificapable?(current_user) %>
+	       | <%= link_to 'Edit', edit_message_path(message) %> |
+	      <%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %>
+	    <% end %>
+	  </td>
   </tr>
 <% end %>
 </table>
+
