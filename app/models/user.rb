@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   # Translators - I'm reading
   has_many :translators, :through => :relations, :source => :translator
-  has_many :subscribers, :through => :relations, :source => :subscriber, :foreign_key => "translator_id"
+  has_many :subscribers, :through => :relations, :foreign_key => "translator_id"
   # Relations
 
 

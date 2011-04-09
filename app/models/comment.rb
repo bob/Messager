@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
   @@per_page = 5
 
   def destroyable?(current_user)
-    self.user == current_user or self.commentable.user == current_user
+    self.user == current_user or (self.commentable.instance_of?(Message) and self.commentable.user == current_user) or (self.commentable.instance_of?(User) and self.commentable == current_user)
   end
 end
 
