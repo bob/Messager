@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :prepare, :except => [:destroy]
   
-  def new    
+  def new    # create object @comment
     @comment = Comment.new
 
     respond_to do |format|
@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  def create
+  def create    # save comment to DB
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
     @comment.commentable = @commentable

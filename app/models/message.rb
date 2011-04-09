@@ -1,9 +1,10 @@
 class Message < ActiveRecord::Base
   belongs_to :user  
   has_many :comments, :as => :commentable
+  has_and_belongs_to_many :categories
 
   cattr_reader :per_page
-  @@per_page = 5
+  @@per_page = 4
 
   IMG_DIR = "/images/Smiles/"
   EMOTIONS = [

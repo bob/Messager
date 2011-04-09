@@ -16,7 +16,6 @@
 			<%= render :partial => "comments/comment_item", :locals => {:comment => comment} %>
 		<% end %>
 	</table>
+  <%= will_paginate @comments %>
 </p>
-
-<%= will_paginate @comments %>
 
