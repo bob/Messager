@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     @categories = []
     params[:category_ids] ||= []
     params[:category_ids].each { |c| @categories << c.to_i}
-
+    @cat_out = params[:category_ids]
     Message.order("created_at DESC").each do |message|
      if @categories.to_set.subset?(message.categories.map(&:id).to_set)
        @messages << message

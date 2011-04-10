@@ -41,22 +41,26 @@
 <table border="1" cellspacing="5" cellpadding="5" width="100%">
 	<tr valign="top">
 		<td class="fo" width="20%">
-    	<h4>Main Menu:</h4>
+    	<div id="menu_lines"><h4>Main Menu:</h4></div>
 			<%= render_navigation %>
-      <p>
-      <%= form_tag(search_by_cathegories_path, :method => "get") do %>
-        <%= label_tag("Search messages on categories:") %>
-         <% for category in Category.all do %>
-             <ul id = "cath_for_search">
-               <li>
-                 <%= check_box_tag "category_ids[]", category.id %> <%= category.name %><br/>
-               </li>
-             </ul>
-         <% end %>
-        <%= submit_tag("Search") %>
-      <% end %>
-      </p>
 
+      <% if current_user %>
+        <p>
+        <%= form_tag(search_by_cathegories_path, :method => "get") do %>
+        <div id="menu_lines">
+           <%= label_tag("Search messages on categories:") %></div>
+           <% for category in Category.all do %>
+               <ul id = "cath_for_search">
+                 <li>
+                   <%= check_box_tag "category_ids[]", category.id, \
+                   (@categories and @categories.include?(category.id)) %> <%= category.name %><br/>
+                 </li>
+               </ul>
+           <% end %>
+          <div id="menu_lines"><%= submit_tag("Search") %></div>
+        <% end %>
+        </p>
+      <% end %>
 
 	<!-- <ul>
 			<li><%= controller.controller_name %> - <%= controller.action_name %></li>
