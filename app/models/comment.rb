@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   
   cattr_reader :per_page
-  @@per_page = 4
+  @@per_page = 2
 
   validates_presence_of :body
   
