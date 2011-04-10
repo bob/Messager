@@ -26,8 +26,11 @@ Messager::Application.routes.draw do
 
   devise_for :users
 
-  resources :messages  
-  resources :comments, :only => [:new, :create, :destroy]    
+  resources :messages
+
+  match "message/search_by_categories" => "messages#search_by_categories", :as => "search_by_cathegories"
+
+  resources :comments, :only => [:new, :create, :destroy]
 
   match "status/current" => "messages#current", :as => "current_status"
 
