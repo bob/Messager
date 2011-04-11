@@ -1,0 +1,8 @@
+$("#comments").prepend("<%= escape_javascript(render(:partial => "comments/comment_item", :locals => {:comment => @comment})) %>")
+
+$("#comment_<%= @comment.id %>").effect("highlight", {}, 3000)
+
+$("#new_comment")[0].reset();
+
+$("#comments_count").html("<%= pluralize(@commentable.comments.count, "comment") %>")
+$("#comments_count").effect("highlight", {}, 3000)

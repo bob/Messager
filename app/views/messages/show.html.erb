@@ -31,9 +31,17 @@
 | <%= link_to 'Back', messages_path %>
 | <%= link_to "Add comment", new_comment_path(:commentable_type => "message", :commentable_id => @message.id) %>
 
+<div id="comments_count">
+	<%= pluralize(@message.comments.count, "comment") %>
+</div>
+
+<h2>Say something</h2>
+
+<%= render :partial => "comments/form", :locals => {:ctype => "message", :cid => @message.id, :is_remote => true} %>
+
 <h2>Comments</h2>
 
-<table>
+<table id="comments">
 	<% @comments.each do |comment| %>
 		<%= render :partial => "comments/comment_item", :locals => {:comment => comment} %>
 	<% end %>

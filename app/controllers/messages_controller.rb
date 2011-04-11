@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     @messages = current_user.messages
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {}# index.html.erb
       format.xml  { render :xml => @messages }
     end
   end
@@ -18,12 +18,19 @@ class MessagesController < ApplicationController
     @categories = []
     params[:category_ids] ||= []
     params[:category_ids].each { |c| @categories << c.to_i}
-    Message.order("created_at DESC").each do |message|
-     if @categories.to_set.subset?(message.categories.map(&:id).to_set)
-       @messages << message
-     end
-
-   end
+    
+    @categories.each do |c|
+      @category = Category.find c
+      @messages << @category.messages
+    end
+    
+    @messages.flatten!.uniq! if @messages.count > 0
+    
+    # Message.order("created_at DESC").each do |message|
+    #   if @categories.to_set.subset?(message.categories.map(&:id).to_set)
+    #     @messages << message
+    #   end
+    # end
 
   end
 
@@ -40,7 +47,8 @@ class MessagesController < ApplicationController
   end
 
   def current
-    @message = current_user.messages.order(:created_at).last
+    # @message = current_user.messages.order(:created_at).last
+    @message = Message.current_for_user(current_user).last
     @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => @message.id, :commentable_type => "Message" }, :order => "created_at DESC")
     #redirect_to message_path(@message)
     render :show

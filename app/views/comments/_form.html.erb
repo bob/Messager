@@ -1,0 +1,16 @@
+<% is_remote ||= false %>
+
+<%= form_for(:comment, :url => comments_path(:commentable_type => ctype, :commentable_id => cid), :method => :post, :remote => is_remote, :html => {:id => "new_comment"}) do |f| %>
+
+	<%= f.error_messages %>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_field :body, :size => 60 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

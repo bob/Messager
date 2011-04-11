@@ -34,3 +34,4 @@ gem 'devise'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git" 
 gem "simple-navigation"	
 gem 'will_paginate', '~> 3.0.beta'
+gem 'jquery-rails', '>= 0.2.6'

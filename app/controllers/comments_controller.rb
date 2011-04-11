@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {
+
+      }# new.html.erb
       format.xml  { render :xml => @comment }
     end
   end
@@ -18,9 +20,14 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        Notifier.new_comment(@comment).deliver
-        format.html { redirect_to(@commentable, :notice => 'Comment was successfully created.') }
+        # Notifier.new_comment(@comment).deliver
+        format.html { 
+          redirect_to(@commentable, :notice => 'Comment was successfully created.') 
+        }
         format.xml  { render :xml => @commentable, :status => :created, :location => @commentable }
+        format.js {
+
+        }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
@@ -41,6 +48,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(@comment.commentable) }
       format.xml  { head :ok }
+      format.js
     end
   end
 

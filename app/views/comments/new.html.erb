@@ -1,17 +1,3 @@
 <h1>New comment</h1>
 
-<%#= form_for([@message, @comment]) do |f| %>
-<%= form_for(:comment, :url => comments_path(:commentable_type => params[:commentable_type], :commentable_id => params[:commentable_id]), :method => :post) do |f| %>
-
-	<%= f.error_messages %>
-
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_field :body, :size => 60 %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
+<%= render :partial => "comments/form", :locals => {:ctype => params[:commentable_type], :cid => params[:commentable_id]} %>

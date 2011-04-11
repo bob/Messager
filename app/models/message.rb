@@ -3,6 +3,11 @@ class Message < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_and_belongs_to_many :categories
 
+  scope :current_for_user, lambda { |user|
+    where(:user => user)
+    order("created_at")
+  }
+
   cattr_reader :per_page
   @@per_page = 4
 
