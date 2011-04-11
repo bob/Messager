@@ -16,7 +16,7 @@
 	  <td style="border-style:solid; border-color:#<%= message.color %>" id = "message_body">
       <%= message.body %>
     </td>
-    <td>
+    <td align="center">
       <%= image_tag(Message::IMG_DIR + message.emotion) unless message.emotion.blank? %>
     </td>
     <td id = "category">
