@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :prepare, :except => [:destroy]
-  
+
   def new    # create object @comment
     @comment = Comment.new
 
@@ -21,8 +21,8 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         # Notifier.new_comment(@comment).deliver
-        format.html { 
-          redirect_to(@commentable, :notice => 'Comment was successfully created.') 
+        format.html {
+          redirect_to(@commentable, :notice => 'Comment was successfully created.')
         }
         format.xml  { render :xml => @commentable, :status => :created, :location => @commentable }
         format.js {
@@ -37,13 +37,13 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    
     if @comment.destroyable?(current_user)
       flash[:notice] = "Comment deleted"
       @comment.destroy
     else
       flash[:alert] = "Not allowed to delete this comment"
     end
+
 
     respond_to do |format|
       format.html { redirect_to(@comment.commentable) }
@@ -59,3 +59,4 @@ class CommentsController < ApplicationController
   end
 
 end
+

@@ -18,14 +18,14 @@ class MessagesController < ApplicationController
     @categories = []
     params[:category_ids] ||= []
     params[:category_ids].each { |c| @categories << c.to_i}
-    
+
     @categories.each do |c|
       @category = Category.find c
       @messages << @category.messages
     end
-    
+
     @messages.flatten!.uniq! if @messages.count > 0
-    
+
     # Message.order("created_at DESC").each do |message|
     #   if @categories.to_set.subset?(message.categories.map(&:id).to_set)
     #     @messages << message
@@ -38,6 +38,8 @@ class MessagesController < ApplicationController
   # GET /messages/1.xml
   def show
     @message = Message.find(params[:id])
+
+    @current_page = params[:page]
     @comments = Comment.paginate(:page => params[:page], :conditions => { :commentable_id => params[:id], :commentable_type => "Message" }, :order => "created_at DESC")
 
     respond_to do |format|

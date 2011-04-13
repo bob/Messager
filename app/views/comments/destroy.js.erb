@@ -2,3 +2,8 @@ $("#comment_<%= @comment.id %>").fadeOut();
 
 $("#comments_count").html("<%= pluralize(@comment.commentable.comments.count, "comment") %>")
 $("#comments_count").effect("highlight", {}, 3000)
+
+var some_id = $("#comments tr:last").attr("id");
+
+console.log(some_id);
+
