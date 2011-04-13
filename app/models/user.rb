@@ -28,5 +28,9 @@ class User < ActiveRecord::Base
   has_many :translators, :through => :relations, :source => :translator
   
   has_many :comments, :as => :commentable, :order => "created_at DESC"
+
+  def admin?
+    is_admin == true
+  end
   
 end

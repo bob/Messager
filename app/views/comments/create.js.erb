@@ -8,4 +8,5 @@ $("#comments_count").html("<%= pluralize(@commentable.comments.count, "comment")
 $("#comments_count").effect("highlight", {}, 3000)
 
 $("#comments tr:last").fadeOut();
+$("#comments tr:last").remove();
 

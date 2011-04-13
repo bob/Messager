@@ -1,6 +1,9 @@
-<h1>New messages</h1>
+<h1><%= I18n.t("headers.main", :default => "New messages") %></h1>
 
-<h3><%= link_to 'New Message', new_message_path %></h3>
+<p><%= t("headers.submain", :timenow => l(Time.now, :format => :long)) %></p>
+
+
+<h3><%= link_to t("links.new_message"), new_message_path %></h3>
 
 <%= render "messages/messages_list" %>
 <br />

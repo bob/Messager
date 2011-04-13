@@ -1,5 +1,6 @@
 Messager::Application.routes.draw do
 
+  match "set_local/:locale" => "welcome#set_locale", :as => "set_locale"
 
   controller :users do
     get  "user/show_friends" => :show_friends, :as => "show_friends"
@@ -27,6 +28,7 @@ Messager::Application.routes.draw do
   devise_for :users
 
   resources :messages
+  resources :categories
 
   match "message/search_by_categories" => "messages#search_by_categories", :as => "search_by_cathegories"
 

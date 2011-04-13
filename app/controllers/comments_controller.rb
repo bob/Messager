@@ -36,6 +36,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    p params[:page]
     @comment = Comment.find(params[:id])
     if @comment.destroyable?(current_user)
       flash[:notice] = "Comment deleted"
@@ -43,7 +44,6 @@ class CommentsController < ApplicationController
     else
       flash[:alert] = "Not allowed to delete this comment"
     end
-
 
     respond_to do |format|
       format.html { redirect_to(@comment.commentable) }

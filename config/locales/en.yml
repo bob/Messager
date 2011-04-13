@@ -2,4 +2,8 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  headers:
+      main: "New messages"
+      submain: "Now is hours %{timenow} of day"
+  links:
+      new_message: 'New Message'

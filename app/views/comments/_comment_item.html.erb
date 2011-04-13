@@ -9,7 +9,7 @@
 	</td>
 	<td>
 		<% if comment.destroyable?(current_user) %>
-			<%= link_to 'Destroy', comment_path(comment), :confirm => 'Are you sure?', :method => :delete, :remote => true %>
+			<%= link_to 'Destroy', comment_path(comment, :page => params[:page]), :confirm => 'Are you sure?', :method => :delete, :remote => true %>
 		<% end %>
 	</td>
 </tr>
