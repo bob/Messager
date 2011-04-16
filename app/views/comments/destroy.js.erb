@@ -1,9 +1,16 @@
 $("#comment_<%= @comment.id %>").fadeOut();
+$("#comment_<%= @comment.id %>").remove();
 
 $("#comments_count").html("<%= pluralize(@comment.commentable.comments.count, "comment") %>")
 $("#comments_count").effect("highlight", {}, 3000)
+<% if @comment.commentable.comments.count <= Comment.per_page %>
+  $("#pagination").fadeOut();
+  $("#pagination").remove();
+<% end %>
 
-var some_id = $("#comments tr:last").attr("id");
+<% if @comment_to_bottom %>
+$("<%= escape_javascript(render(:partial => "comments/comment_item", :locals => {:comment => @comment_to_bottom})) %>").appendTo($("#comments"))
+<% end %>
 
-console.log(some_id);
+console.log($("#pagination"))
 

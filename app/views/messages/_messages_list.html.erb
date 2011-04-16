@@ -23,7 +23,7 @@
       <%= categories_joined_to_line(message.categories)%>
     </td>
     <td><%= message.created_at.to_s(:my_datetime) %></td>
-    <td><%= link_to 'Show', message %>
+    <td><%= link_to 'Show', message_path(message, :page => "1") %>
       <% if message.modificapable?(current_user) %>
 	       | <%= link_to 'Edit', edit_message_path(message) %> |
 	      <%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %>

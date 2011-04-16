@@ -7,6 +7,14 @@ $("#new_comment")[0].reset();
 $("#comments_count").html("<%= pluralize(@commentable.comments.count, "comment") %>")
 $("#comments_count").effect("highlight", {}, 3000)
 
-$("#comments tr:last").fadeOut();
-$("#comments tr:last").remove();
+console.log($("#comments tr").length);
+if ($("#comments tr").length == <%= Comment.per_page %>)
+    {
+        $("#comments tr:last").fadeOut();
+        $("#comments tr:last").remove();
+    }
+
+<%# if @comment.commentable.comments.count > Comment.per_page %>
+  <%#= will_paginate @comment.commentable.comments %>
+<%# end %>
 

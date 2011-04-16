@@ -36,8 +36,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    p params[:page]
+#    p params[:page]
     @comment = Comment.find(params[:id])
+@comment_to_bottom = Comment.paginate(:page => (params[:page].to_i + 1).to_s, \
+                    :conditions => { :commentable_id => params[:commentable_id], \
+                    :commentable_type => params[:commentable_type] }, \
+                    :order => "created_at DESC").first
     if @comment.destroyable?(current_user)
       flash[:notice] = "Comment deleted"
       @comment.destroy
@@ -48,7 +52,8 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(@comment.commentable) }
       format.xml  { head :ok }
-      format.js
+      format.js   {
+                  }
     end
   end
 

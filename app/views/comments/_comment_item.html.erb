@@ -1,7 +1,7 @@
 <tr id="comment_<%= comment.id %>">
 	<td>
 		<%= link_to image_tag(comment.user.avatar.url(:thumb)), show_user_path(comment.user) %><br/>
-		<%= user_human(comment.user) %>			
+		<%= user_human(comment.user) %>
 	</td>
 	<td>
 		<%= comment.created_at.to_s(:my_datetime) %><br/>
@@ -9,7 +9,8 @@
 	</td>
 	<td>
 		<% if comment.destroyable?(current_user) %>
-			<%= link_to 'Destroy', comment_path(comment, :page => params[:page]), :confirm => 'Are you sure?', :method => :delete, :remote => true %>
+			<%= link_to 'Destroy', comment_path(comment, :page => params[:page], :commentable_id => params[:id], :commentable_type => @type ), :confirm => 'Are you sure?', :method => :delete, :remote => true %>
 		<% end %>
 	</td>
 </tr>
+
