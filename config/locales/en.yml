@@ -5,5 +5,7 @@ en:
   headers:
       main: "New messages"
       submain: "Now is hours %{timenow} of day"
+      categories: "Categories list"
   links:
       new_message: 'New Message'
+

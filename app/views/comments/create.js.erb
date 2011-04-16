@@ -8,7 +8,7 @@ $("#comments_count").html("<%= pluralize(@commentable.comments.count, "comment")
 $("#comments_count").effect("highlight", {}, 3000)
 
 console.log($("#comments tr").length);
-if ($("#comments tr").length == <%= Comment.per_page %>)
+if ($("#comments tr").length > <%= Comment.per_page %>)
     {
         $("#comments tr:last").fadeOut();
         $("#comments tr:last").remove();

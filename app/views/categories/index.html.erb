@@ -1,7 +1,26 @@
-<h1>Categories</h1>
+<h1><%= I18n.t("headers.categories", :default => "Listing categories") %></h1>
 
-<ul>
-	<% @categories.each do |category| %>
-	<li><%= category.name %></li>
-	<% end %>
-</ul>
+<table>
+  <tr>
+    <th><%= t("activerecord.attributes.category.name", :default => "Name") %></th>
+    <th><%= t("activerecord.attributes.category.description", :default => "Description") %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= category.description %></td>
+    <td><%= link_to t("links.show",:default => 'Show'), category %></td>
+    <td><%= link_to t("links.edit",:default => 'Edit'), edit_category_path(category) %></td>
+    <td><%= link_to t("links.destroy",:default => 'Destroy'), category, :confirm => t("javascriptalerts.sure",:default => 'Are you sure?'), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t("links.new_category", :default => "New Category"), new_category_path %>
+

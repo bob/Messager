@@ -92,8 +92,8 @@ ru:
               one: "Тысяча"
               few: "Тысяч"
               many: "Тысяч"
-              other: "Тысяч"              
-            million: 
+              other: "Тысяч"
+            million:
               one: "Миллион"
               few: "Миллионов"
               many: "Миллионов"
@@ -286,7 +286,9 @@ ru:
             message:
                 body: Текст
                 emotion: Настроение
-
+            category:
+                name: Название
+                description: Описание
 
     support:
       select:
@@ -302,10 +304,19 @@ ru:
         two_words_connector: " и "
         last_word_connector: " и "
 
-    
+
     hello: "TEST"
     headers:
         main: "Новые сообщения"
         submain: "сейчас уже %{timenow} настало"
+        categories: "Список категорий"
     links:
         new_message: "Новое сообщение"
+        new_category: "Создать новую категорию"
+        show: "Просмотреть"
+        edit: "Редактировать"
+        destroy: "Удалить"
+        back: "Назад"
+    javascriptalerts:
+        sure: "Вы уверены?"
+

@@ -5,5 +5,4 @@ log/*.log
 tmp/**/*
 public/system/**
 lib/tasks/jquery.rake
-public/javascripts/jquery-ui.min.js
 
