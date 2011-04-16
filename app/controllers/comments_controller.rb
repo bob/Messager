@@ -38,10 +38,13 @@ class CommentsController < ApplicationController
   def destroy
 #    p params[:page]
     @comment = Comment.find(params[:id])
-@comment_to_bottom = Comment.paginate(:page => (params[:page].to_i + 1).to_s, \
-                    :conditions => { :commentable_id => params[:commentable_id], \
-                    :commentable_type => params[:commentable_type] }, \
-                    :order => "created_at DESC").first
+    #@comment_to_bottom = Comment.paginate(:page => (params[:page].to_i + 1).to_s, \
+    #                   :conditions => { :commentable_id => params[:commentable_id], \
+    #                  :commentable_type => params[:commentable_type] }, \
+   #                 :order => "created_at DESC").first
+    @comment_to_bottom = @comment.commentable.comments.order("created_at DESC").paginate(:page =>\
+     (params[:page].to_i + 1).to_s, :per_page => Comment.per_page).first
+
     if @comment.destroyable?(current_user)
       flash[:notice] = "Comment deleted"
       @comment.destroy

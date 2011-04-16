@@ -15,6 +15,6 @@ if ($("#comments tr").length == <%= Comment.per_page %>)
     }
 
 <%# if @comment.commentable.comments.count > Comment.per_page %>
-  <%#= will_paginate @comment.commentable.comments %>
+  <%# redirect_to (@comment.commentable.id) %>
 <%# end %>
 
